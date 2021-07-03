@@ -1,0 +1,20 @@
+{% extends "hola/index.html" %}
+{% block content %}
+<div>
+    <h1>Iniciar sesión</h1>
+
+    <form>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="button" class="btn btn-primary">Registrarse</button>
+    </form>
+</div>
+{% endblock %}
