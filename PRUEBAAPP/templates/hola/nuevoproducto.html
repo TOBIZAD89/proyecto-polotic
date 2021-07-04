@@ -1,23 +1,48 @@
 {% extends "hola/index.html" %}
 {% block content %}
-<div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label"></label>
-    <input type="text" class="form-control" id="exampleFormControlInput1">
-</div>
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Titulo del producto</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1"
+      placeholder="Ingrese un titulo para el producto">
   </div>
-  <form class="d-flex">
-    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success" type="submit">subir</button>
-  </form>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>CATEGORIAS</option>
-  </select>
-  
- 
+  <div class="row">
+    <div class="col-6">
+
+
+
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <form>
+
+          <select class="form-select" aria-label="Default select example">
+            <option selected>CATEGORIAS</option>
+            <option selected>CATEGORIAS 2</option>
+            <option selected>CATEGORIAS 3</option>
+          </select>
+
+          <div class="input-group">
+            <textarea class="form-control" aria-label="textarea"
+              placeholder="Ingrese la descripcion del producto"></textarea>
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text">Precio $</span>
+            <input type="text" class="form-control">
+            <span class="input-group-text">.00</span>
+          </div>
+
+         <button class="btn btn-outline-success" type="submit">Guardar Producto</button>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
 {% endblock %}

@@ -4,6 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request,"hola/index.html")
@@ -21,16 +22,12 @@ def acerca(request):
 def contactos(request):
         return render(request,"hola/contacto.html")
 
+@login_required
 def nuevo_producto(request):
       return render(request,"hola/nuevoproducto.html")
 
-def login(request):
-      return render(request,"hola/login.html")
-
 #def registrarse(request):
 #      return render(request,"hola/registrarse.html")
-
-
 
 
 def registrarse(request):
@@ -44,8 +41,6 @@ def registrarse(request):
     return render(request, 'registration/registro.html', {
         'form': form
         })
-
-
       
 def ver_producto(request):
       return render(request,"hola/ver-producto.html")
