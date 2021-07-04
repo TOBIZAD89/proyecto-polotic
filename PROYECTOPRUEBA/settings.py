@@ -131,3 +131,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirigir a la URL de inicio después de iniciar sesión (Default redirecciona a /accounts/profile/)
+LOGIN_REDIRECT_URL = '/PRUEBAAPP'

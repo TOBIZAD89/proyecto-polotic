@@ -15,5 +15,4 @@ urlpatterns = [
     path('resultadobusqueda', views.resultadobusqueda, name="resultadobusqueda"),
     path('categorias', views.categorias, name="categorias"),
     path('home', views.home, name="home"),
-    
 ]
