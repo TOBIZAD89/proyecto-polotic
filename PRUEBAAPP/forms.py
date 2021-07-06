@@ -1,6 +1,19 @@
+from PRUEBAAPP.models import Contacto
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
+
+class FormContactoCustom(forms.ModelForm):
+    #campos del modelo
+    class Meta:
+        model = Contacto
+        fields = ('email', 'mensaje')
+        widgets = {
+            'email': forms.TextInput(attrs={'class': 'form-control'}),
+            'mensaje': forms.TextInput(attrs={'class': 'form-control'}),
+        }        
+
+
 
 class RegistroForm(UserCreationForm):
     username = forms.CharField(

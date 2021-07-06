@@ -58,9 +58,11 @@
 							CATEGORIAS
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<li><a class="dropdown-item" href="#">Categoria 1</a></li>
-							<li><a class="dropdown-item" href="#">Categoria 2</a></li>
-							<li><a class="dropdown-item" href="#">Categoria 3</a></li>
+							{% for una_categoria in categorias %}
+							<li><a class="dropdown-item" href="{% url 'PRUEBAAPP:categorias'%}">{{ una_categoria.descripcion }}</a></li>
+							{% empty %}
+							<li><a class="dropdown-item">Sin categorias cargadas</a></li>
+							{% endfor %}
 						</ul>
 					</li>
 					<li class="nav-item">

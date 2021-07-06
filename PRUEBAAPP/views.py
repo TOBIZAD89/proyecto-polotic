@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from PRUEBAAPP.models import Categoria, Producto, Carrito
 
 def index(request):
     return render(request,"hola/index.html")
@@ -19,8 +20,19 @@ def plantilla(request):
 def acerca(request):
         return render(request,"hola/acercade.html")
 
-def contactos(request):
-        return render(request,"hola/contacto.html")
+def contactos(request): 
+   categorias = Categoria.objects.all()  
+   if request.method == 'POST':
+      form = FormContactoCustom(request.POST)
+      if form.is_valid():
+        form.save()          
+        return render(request,"hola/contacto-exitoso.html", {"categorias":categorias})
+   else:
+      form = FormContactoCustom()
+      return render(request, "hola/contacto.html", {
+        'form': form,
+        "categorias": categorias
+      })
 
 @login_required
 def nuevo_producto(request):
@@ -53,7 +65,13 @@ def categorias(request):
       return render(request,"hola/categorias.html")
 
 def home(request):
-      return render(request,"hola/home.html")
+      categorias = Categoria.objects.all()
+      productos = Producto.objects.all()
+      return render(request,"hola/home.html",
+      {
+            "productos": productos,
+            "categorias": categorias
+      })
 
 
 
