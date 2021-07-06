@@ -1,4 +1,4 @@
-{% extends "hola/index.html" %}
+{% extends "hola/layout.html" %}
 {% block content %}
 <div>
   <h1>Iniciar sesión</h1>
@@ -8,15 +8,15 @@
 
 
     <div class="mb-3">
-
+      <label for="username" class="form-label">Username</label> 
+      
       {{ form.username }}
-      <!--        <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">-->
+      <!--      <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">-->
     </div>
     <div class="mb-3">
-
+      <label for="password" class="form-label">Contraseña</label>
       {{ form.password }}
-      <!-- <label for="password" class="form-label">Contraseña</label>
+      <!-- <
             <input type="password" class="form-control" id="password">-->
     </div>
 

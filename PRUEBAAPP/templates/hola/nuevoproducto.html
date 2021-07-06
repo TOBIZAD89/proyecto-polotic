@@ -1,45 +1,73 @@
-{% extends "hola/index.html" %}
+{% extends "hola/layout.html" %}
 {% block content %}
 <div class="container">
-  <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Titulo del producto</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1"
-      placeholder="Ingrese un titulo para el producto">
-  </div>
-  <div class="row">
-    <div class="col-6">
+  <form method="post" enctype="multipart/form-data">
 
-
-
+    <div class="mb-3">
+      <label class="form-label">Titulo del producto</label>
+      <!-- <input type="text" class="form-control" id="exampleFormControlInput1"
+      placeholder="Ingrese un titulo para el producto"> -->
+      {{form.titulo}}
     </div>
-    <div class="col-6">
-      <div class="card">
-        <form>
-
-          <select class="form-select" aria-label="Default select example">
-            <option selected>CATEGORIAS</option>
-            <option selected>CATEGORIAS 2</option>
-            <option selected>CATEGORIAS 3</option>
-          </select>
-
-          <div class="input-group">
-            <textarea class="form-control" aria-label="textarea"
-              placeholder="Ingrese la descripcion del producto"></textarea>
-          </div>
-
-          <div class="input-group mb-3">
-            <span class="input-group-text">Precio $</span>
-            <input type="text" class="form-control">
-            <span class="input-group-text">.00</span>
-          </div>
-
-         <button class="btn btn-outline-success" type="submit">Guardar Producto</button>
-        </form>
+    <div class="row">
+      <div class="col-6">
+        
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Imagen del producto</label>
+          <!-- <input class="form-control" type="file" id="formFile"> -->
+          {{form.imagen}}
+        </div>
 
 
       </div>
+      <div class="col-6">
+        <div>
+          {% csrf_token %}
+          <!-- {{ form.as_p }} -->
+
+          <div class="input-group">
+            <label for="categoria" class="form-label">Categoria</label>
+
+            {{ form.categoria}}
+            <!-- <select class="form-select" aria-label="Default select example">
+              {% for una_categoria in categorias %}
+              <option value="{{ una_categoria.id }}">{{ una_categoria.descripcion }}</option>
+              {% endfor %}
+            </select> -->
+          </div>
+          <div class="input-group">
+            <label for="descripcion" class="form-label">Descripcion</label>
+            {{ form.descripcion}}
+            <!-- <textarea class="form-control" aria-label="textarea"
+              placeholder="Ingrese la descripcion del producto"></textarea> -->
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="destacado">
+              Destacado en la página principal
+            </label>
+            {{ form.destacado}}
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Precio $</span>
+            <!-- <input type="text" class="form-control" placeholder="Ingrese un precio"> -->
+            {{ form.precio }}
+            <span class="input-group-text">.00</span>
+          </div>
+
+        </div>
+      </div>
     </div>
-  </div>
+    {% if operacion == 'editar' %}
+    <button class="btn btn-success" type="submit">Actualizar Producto</button>
+    {% elif operacion == 'eliminar' %}
+
+    <button class="btn btn-danger" type="submit">Eliminar Producto</button>
+    {% elif operacion == 'alta' %}
+
+    <button class="btn btn-success" type="submit">Guardar Producto</button>
+    {% endif %}
+
+  </form>
 
 
 

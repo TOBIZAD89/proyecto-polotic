@@ -1,11 +1,11 @@
-{% extends "hola/index.html" %}
+{% extends "hola/layout.html" %}
 {% block content %}
 <div class="album py-5 bg-light">
     <div class="container">
-
         <h1>Productos Destacados</h1>
+            
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for un_producto in productos %}
+            {% for un_producto in productos_destacados %}
             <div class="col">
                 <div class="card shadow-sm">
                     <img class="bd-placeholder-img card-img-top" src="{{ un_producto.imagen.url }}" alt="" srcset="">
@@ -14,7 +14,7 @@
                         <p class="card-text">{{un_producto.descripcion}}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="" class="btn btn-sm btn-outline-secondary" >Ver más</a>
+                                <a href="{% url 'PRUEBAAPP:ver-producto' un_producto.id%}" class="btn btn-sm btn-outline-secondary" >Ver más</a>
                             </div>
                             <small class="text-muted">${{un_producto.precio}}</small>
                         </div>
@@ -26,30 +26,30 @@
         <h1>Mas productos</h1>
         <table class="table">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">PRODUCTO</th>
-                <th scope="col">DESCRIPCION</th>
-                <th scope="col">VALOR</th>
-              </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">PRODUCTO</th>
+                    <th scope="col">DESCRIPCION</th>
+                    <th scope="col">PRECIO</th>
+                </tr>
             </thead>
             <tbody>
                 {% for un_producto in productos %}
-				<tr>
-                    <th scope="row">{{ un_producto.id }} </th>
+                <tr>
+                    <td>{{ un_producto.id}}</td>
+                    
                     <td>{{ un_producto.titulo}}</td>
                     <td>{{ un_producto.descripcion}}</td>
                     <td>${{ un_producto.precio}}</td>
                 </tr>
-                
                 {% empty %}
-				<tr>
-                    <td>No hay productos cargados</td>
+                <tr>
+                    <td>Sin productos</td>
                 </tr>
                 {% endfor %}
-              
+
             </tbody>
-          </table>
+        </table>
     </div>
 </div>
 

@@ -1,0 +1,45 @@
+{% extends "hola/layout.html" %}
+{% block content %}
+<div class="container">
+
+    <div class="col-md-12 col-lg-12 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Carrito</span>
+            <span class="badge bg-primary rounded-pill">{{carrito.productos.count}}</span>
+        </h4>
+        <ul class="list-group mb-3">
+            {% for un_producto in carrito.todos_productos_carrito %}
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">{{ un_producto.titulo}}</h6>
+                    <small class="text-muted">{{un_producto.descripcion}}</small>
+                </div>
+                <span class="text-muted">${{un_producto.precio}}
+                    <a class="btn btn-danger btn-sm" href="{% url 'PRUEBAAPP:eliminar-carrito' un_producto.id%}">X</a>
+                </span>
+            </li>
+            {% empty %}
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Sin resultados</h6>
+                </div>
+            </li>
+            
+            {% endfor %}
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total (ARS)</span>
+                <strong>${{ carrito.total_carrito }}</strong>
+            </li>
+        </ul>
+
+        <form >
+            {% if carrito.productos %}
+            <a type="submit" href="{% url 'PRUEBAAPP:eliminar-carrito'%}" class="btn btn-danger">Vaciar carrito</a>
+            <button type="button" class="btn btn-success">Finalizar compra</button>
+            {% endif %}
+    
+        </form>
+    </div>
+
+</div>
+{% endblock %}

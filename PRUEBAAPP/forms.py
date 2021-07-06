@@ -1,7 +1,22 @@
-from PRUEBAAPP.models import Contacto
+from PRUEBAAPP.models import Categoria, Contacto, Producto
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
+
+
+class FormProductoCustom(forms.ModelForm):
+    #campos del modelo
+    class Meta:
+        model = Producto
+        fields = ('titulo', 'categoria', 'imagen', 'descripcion','destacado', 'precio')
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Ingrese el titulo del producto'}),
+            'imagen': forms.FileInput(attrs={'class': 'form-control'}),
+            'categoria': forms.Select(choices=Categoria.objects.all(), attrs={'class': 'form-select'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder':'Ingrese la descripcion del producto'}),
+            'destacado': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Ingrese el precio del producto'}),
+        }
 
 class FormContactoCustom(forms.ModelForm):
     #campos del modelo
@@ -12,8 +27,6 @@ class FormContactoCustom(forms.ModelForm):
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'mensaje': forms.TextInput(attrs={'class': 'form-control'}),
         }        
-
-
 
 class RegistroForm(UserCreationForm):
     username = forms.CharField(
